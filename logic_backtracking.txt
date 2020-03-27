@@ -1,0 +1,49 @@
+backtracking:
+- find empty slots
+- try fill in with numbers 1-9
+- if there is a solution then continue
+- if there is no valid solution at the cell, backtrack to previous cell and try the next available number
+- do this recursively until an unique solution is found, return True
+- if there is no unique solution, return False
+
+what we need:
+- function to display the board (to be modified when we can generate board)
+- function to find empty slot
+- function to check is the number filling in is safe
+- function to backtrack
+- return True or False
+
+printboard function
+* takes board as parameter
+* prints all numbers including 0's
+* prints dividing column lines and row lines
+
+findempty function
+* takes board as parameter
+* finds the slot that says 0
+* return (row,col) as a tuple
+
+valid function
+* takes board, number (between 1-9), pos as parameter
+* pos is a tuple that contains the location of cell we are accessing
+* number is the number we try to assign to the empty cell
+* checks row, column and the subgrid the empty cell is in to see if number inserting is valid 
+    - finding the subgrid
+        * determine which subgrid we are in
+        * subgrid x is the column // 3
+        * subgrid y is the row // 3
+        * subgrids have coordinates from (0,0) to (2,2)
+    - checking the subgrid
+        * check only rows in subgrid
+        * check only columns in subgrid
+        * if number exists and the coordinates is not the position we are accessing, return False
+
+solve function
+- this is the main program that uses all the functions to solve the puzzle
+- uses recursion
+    * if the number is safe to assign, it fills the empty slot
+    * then the solve function is called again, and again (recursion)
+    * if the solve function returns False (no solution) then, 
+    the current cell is reset to 0, and the function runs again,
+    on this cell, but with the next safe number
+    * if there is no solution reached, then the function returns false
