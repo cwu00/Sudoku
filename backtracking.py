@@ -7,20 +7,10 @@
 # recursively do this until we reach a solution
 # return false if there is no solution to the puzzle (recursion fails)
 
+import initial_board
 
-# this is the temporary board
-# we will change this when we write program to generate sudoku board
-board = [
-    [7,8,0,4,0,0,1,2,0],
-    [6,0,0,0,7,5,0,0,9],
-    [0,0,0,6,0,1,0,7,8],
-    [0,0,7,0,4,0,2,6,0],
-    [0,0,1,0,5,0,9,3,0],
-    [9,0,4,0,6,0,0,0,5],
-    [0,7,0,3,0,0,0,1,2],
-    [1,2,0,0,0,7,4,0,0],
-    [0,4,9,2,0,6,0,0,7]
-]
+#this calls the function to generate a valid board
+board = initial_board.board_removed_numbers()
 
 # displaying the board with empty slots and subgrids
 def printBoard(board):
@@ -88,8 +78,3 @@ def solve(board):
             #if recursion fails, reset the previous empty cell and try another number
             board[row][col] = 0
     return False
-            
-printBoard(board)
-print("==========================")
-print(solve(board))
-
